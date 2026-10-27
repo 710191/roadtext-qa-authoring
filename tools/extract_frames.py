@@ -18,14 +18,15 @@ for n, vid in enumerate(ids):
     if os.path.exists(f"{d}/DONE"):
         continue
     os.makedirs(d, exist_ok=True)
-    cap, i = cv2.VideoCapture(video_path(vid)), 0
+    cap, i, size = cv2.VideoCapture(video_path(vid)), 0, "?"
     while True:
         ok, im = cap.read()
         if not ok:
             break
+        size = f"{im.shape[1]}x{im.shape[0]}"
         if i % step == 0:
             cv2.imwrite(f"{d}/f{i:04d}.jpg", im, [cv2.IMWRITE_JPEG_QUALITY, 92])
             cv2.imwrite(f"{d}/g{i:04d}.jpg", grid(im), [cv2.IMWRITE_JPEG_QUALITY, 92])
         i += 1
     open(f"{d}/DONE", "w").write(str(i))
-    print(f"{n + 1}/{len(ids)} {vid} frames={i} size={im.shape[1] if i else '?'}", flush=True)
+    print(f"{n + 1}/{len(ids)} {vid} frames={i} size={size}", flush=True)
