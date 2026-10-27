@@ -15,7 +15,8 @@ Resolution differs per video (RoadText-1K 1280x720; RoadTextVQA 1280x720 or 1920
 You have (commands in README.md):
   the overview sheet (tools/overview.py: 2x5 grid, native frames f0..f270 step 30), the pre-extracted native frames
   every 15th frame (tools/extract_frames.py -> frames/<vid>/fNNNN.jpg, grid copy gNNNN.jpg with 100 px lines labelled
-  in native pixels), and native crops on request (tools/frame_crops.py, shows the region native x3 and as seen at 224x224).
+  in native pixels), native crops on request (tools/frame_crops.py, shows the region native x3 and as seen at 224x224),
+  and the official OCR words per sampled frame (tools/ocr_words.py: first frame each word is read, box height native / at 224).
 
 STEP 1  Describe before you ask   (StreamingBench caption step)
   1. Write a short timeline of what is VISIBLE, with frame numbers: ego motion (stop / turn / pass), people, vehicles, signs.
